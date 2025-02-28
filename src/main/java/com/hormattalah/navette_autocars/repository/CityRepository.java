@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public interface CityRepository extends JpaRepository<City, Long> {
     @Query("SELECT COUNT(c) FROM City c")
     Long countTotalCities();
 
-    @Query("SELECT COUNT(c) FROM City c JOIN c.navettes n WHERE n.typeOwner = 'SOCIETY'")
-    Long countCitiesForSociety();
+    @Query("SELECT COUNT(c) FROM City c JOIN c.navettes n WHERE c.user.id = :userId AND n.typeOwner = 'SOCIETY'")
+    Long countCitiesForSociety(@Param("userId") Long userId);
 
 
 }

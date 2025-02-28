@@ -31,6 +31,6 @@ public interface BusService {
 
     public Long getTotalBusCount();
 
-    public Long getBusCountForSociety() ;
+    public Long getBusCountForSociety(Long userId) ;
 
 }

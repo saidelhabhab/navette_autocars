@@ -27,7 +27,7 @@ public interface BusRepository extends JpaRepository<Bus, Long> {
     @Query("SELECT COUNT(b) FROM Bus b")
     Long countTotalBuses();
 
-    @Query("SELECT COUNT(b) FROM Bus b JOIN b.navette n WHERE n.typeOwner = 'SOCIETY'")
-    Long countBusesForSociety();
+    @Query("SELECT COUNT(b) FROM Bus b JOIN b.navette n WHERE b.user.id = :userId AND n.typeOwner = 'SOCIETY'")
+    Long countBusesForSociety(@Param("userId") Long userId);
 
 }

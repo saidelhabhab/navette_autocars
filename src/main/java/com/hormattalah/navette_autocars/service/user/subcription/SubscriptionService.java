@@ -24,12 +24,13 @@ public interface SubscriptionService {
     public long countSubscriptionsByUserId(Long userId);
 
     public Long getTotalPriceForAdmin();
+
     public Long getTotalPrice();
 
-    public Long getTotalPriceForSociety();
+    public Long getTotalPriceForSociety(Long idSociety);
 
     public long getTotalSubscriptionsByAdmin();
 
-    public long getTotalSubscriptionsBySociety();
+    public long getTotalSubscriptionsBySociety(Long idSociety);
 
 }

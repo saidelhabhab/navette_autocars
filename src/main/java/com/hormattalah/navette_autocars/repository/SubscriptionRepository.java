@@ -5,6 +5,7 @@ import com.hormattalah.navette_autocars.enums.OwnerType;
 import com.hormattalah.navette_autocars.enums.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Query("SELECT SUM(s.price) FROM Subscription  s")
     Long getTotalPrice();
 
-    @Query("SELECT SUM(s.price) FROM Subscription s JOIN s.navette n WHERE n.typeOwner = 'SOCIETY'")
-    Long getTotalPriceForSociety();
+    @Query("SELECT SUM(s.price) FROM Subscription s JOIN s.navette n WHERE s.idSociety = :idSociety AND   n.typeOwner = 'SOCIETY'")
+    Long getTotalPriceForSociety(@Param("idSociety") Long idSociety);
 
 
     // Count subscriptions by admin (OwnerType.ADMIN)
@@ -33,7 +34,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     long countByAdmin();
 
     // Count subscriptions by society (OwnerType.SOCIETY)
-    @Query("SELECT COUNT(s) FROM Subscription s WHERE s.navette.typeOwner = 'SOCIETY'")
-    long countBySociety();
+    @Query("SELECT COUNT(s) FROM Subscription s WHERE s.idSociety = :idSociety AND s.navette.typeOwner = 'SOCIETY'")
+    long countBySociety(@Param("idSociety") Long idSociety);
 
 }

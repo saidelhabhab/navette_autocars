@@ -54,11 +54,16 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No available seats on this bus");
         }
 
+
+
         // Map the DTO to an entity
         Subscription subscription = modelMapper.map(subscriptionDto, Subscription.class);
 
+        subscription.setIdSociety(navette.getUser().getId());
+
         // Save the entity
         Subscription saved = subscriptionRepository.save(subscription);
+
 
         // Reduce bus capacity
         bus.setCapacity(bus.getCapacity() - 1);
@@ -73,7 +78,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         // Optionally, set additional properties from associated entities:
         if (saved.getUser() != null) {
             savedDto.setUserId(saved.getUser().getId());
+
         }
+
         if (saved.getNavette() != null) {
             savedDto.setNavetteId(saved.getNavette().getId());
         }
@@ -193,8 +200,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public Long getTotalPriceForSociety() {
-        return subscriptionRepository.getTotalPriceForSociety();
+    public Long getTotalPriceForSociety(Long idSociety) {
+        Long total = subscriptionRepository.getTotalPriceForSociety(idSociety);
+        return (total != null) ? total : 0L;
     }
 
     @Override
@@ -203,8 +211,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public long getTotalSubscriptionsBySociety() {
-        return subscriptionRepository.countBySociety();
+    public long getTotalSubscriptionsBySociety(Long idSociety) {
+        return subscriptionRepository.countBySociety(idSociety);
     }
 
 }

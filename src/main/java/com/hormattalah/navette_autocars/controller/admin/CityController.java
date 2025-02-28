@@ -84,8 +84,8 @@ public class CityController {
         return ResponseEntity.ok(cityService.getTotalCityCount());
     }
 
-    @GetMapping("city/count/society")
-    public ResponseEntity<Long> getCityCountForSociety() {
-        return ResponseEntity.ok(cityService.getCityCountForSociety());
+    @GetMapping("city/count/society/{userId}")
+    public ResponseEntity<Long> getCityCountForSociety(@PathVariable Long userId) {
+        return ResponseEntity.ok(cityService.getCityCountForSociety(userId));
     }
 }

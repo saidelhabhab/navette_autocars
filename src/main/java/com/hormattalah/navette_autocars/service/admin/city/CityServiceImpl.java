@@ -176,8 +176,8 @@ public class CityServiceImpl implements CityService {
         return cityRepository.countTotalCities();
     }
     @Override
-    public Long getCityCountForSociety() {
-        return cityRepository.countCitiesForSociety();
+    public Long getCityCountForSociety(Long userId) {
+        return cityRepository.countCitiesForSociety(userId);
     }
 
 

@@ -127,8 +127,8 @@ public class BusServiceImp implements  BusService{
         return busRepository.countTotalBuses();
     }
     @Override
-    public Long getBusCountForSociety() {
-        return busRepository.countBusesForSociety();
+    public Long getBusCountForSociety(Long userId) {
+        return busRepository.countBusesForSociety(userId);
     }
 
 }

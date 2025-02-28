@@ -42,6 +42,9 @@ public class SubscriptionDto {
 
     private long price;
 
+    private long idSociety;
+
+
     private String  transactionId;
     private String currency;
     private String paymentMethodId;

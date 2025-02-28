@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/verify**", "/authenticate",  "/sign-up",
                                 "/send-email", "/getSiteURL", "/login**",
-                                "/reset-password", "/forget-password", "/error**",
+                                "/reset-password", "/forget-password", "/error**","/buses",
                                 "/navette2","/navette","/check","/morocco/cities")
                         .permitAll() // Public endpoints
                         .requestMatchers("/api/**").authenticated() // Secured endpoints

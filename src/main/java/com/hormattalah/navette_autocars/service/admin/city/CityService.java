@@ -31,5 +31,5 @@ public interface CityService {
 
     public Long getTotalCityCount() ;
 
-    public Long getCityCountForSociety();
+    public Long getCityCountForSociety(Long userId);
 }

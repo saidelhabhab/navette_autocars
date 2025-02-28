@@ -1,7 +1,9 @@
 package com.hormattalah.navette_autocars.controller;
 
 
+import com.hormattalah.navette_autocars.request.BusDto;
 import com.hormattalah.navette_autocars.request.NavetteDto;
+import com.hormattalah.navette_autocars.service.admin.bus.BusService;
 import com.hormattalah.navette_autocars.service.admin.navette.NavetteService;
 import com.hormattalah.navette_autocars.service.user.subcription.SubscriptionService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,8 @@ public class ForAllController {
 
     private final NavetteService navetteService;
 
+    private final BusService busService;
+
 
     private final SubscriptionService subscriptionService;
 
@@ -39,6 +43,15 @@ public class ForAllController {
 
         Page<NavetteDto> navettes = navetteService.getAllNavettes(page, size);
         return ResponseEntity.ok(navettes);
+    }
+
+    @GetMapping("buses")
+    public ResponseEntity<Page<BusDto>> getAllBuses(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Page<BusDto> buses = busService.getAllBuses(page, size);
+        return ResponseEntity.ok(buses);
     }
 
 

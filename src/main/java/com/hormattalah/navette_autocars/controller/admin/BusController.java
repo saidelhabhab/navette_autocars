@@ -26,6 +26,7 @@ public class BusController {
         Page<BusDto> buses = busService.getAllBuses(page, size);
         return ResponseEntity.ok(buses);
     }
+
     @GetMapping("buses2")
     public ResponseEntity<List<BusDto>> getAllBuses() {
         List<BusDto> buses = busService.getAllBuses2();
@@ -77,8 +78,8 @@ public class BusController {
         return ResponseEntity.ok(busService.getTotalBusCount());
     }
 
-    @GetMapping("buses/count/society")
-    public ResponseEntity<Long> getBusCountForSociety() {
-        return ResponseEntity.ok(busService.getBusCountForSociety());
+    @GetMapping("buses/count/society/{userId}")
+    public ResponseEntity<Long> getBusCountForSociety(@PathVariable  Long userId) {
+        return ResponseEntity.ok(busService.getBusCountForSociety(userId));
     }
 }

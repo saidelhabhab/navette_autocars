@@ -83,9 +83,9 @@ public class SubscriptionController {
     }
 
 
-    @GetMapping("/total/society")
-    public ResponseEntity<Long> getTotalPriceForSociety() {
-        return ResponseEntity.ok(subscriptionService.getTotalPriceForSociety());
+    @GetMapping("/total/society/{idSociety}")
+    public ResponseEntity<Long> getTotalPriceForSociety(@PathVariable Long idSociety) {
+        return ResponseEntity.ok(subscriptionService.getTotalPriceForSociety(idSociety));
     }
 
     @GetMapping("/admin/count")
@@ -93,9 +93,9 @@ public class SubscriptionController {
         return subscriptionService.getTotalSubscriptionsByAdmin();
     }
 
-    @GetMapping("/society/count")
-    public long getTotalSubscriptionsBySociety() {
-        return subscriptionService.getTotalSubscriptionsBySociety();
+    @GetMapping("/society/count/{idSociety}")
+    public long getTotalSubscriptionsBySociety(@PathVariable Long idSociety) {
+        return subscriptionService.getTotalSubscriptionsBySociety(idSociety);
     }
 
 }

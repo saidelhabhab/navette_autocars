@@ -48,6 +48,8 @@ public class Subscription {
     @Column(name = "month_option")
     private Integer monthOption;
 
+    private long idSociety;
+
     private long price;
 
     private String  transactionId;
